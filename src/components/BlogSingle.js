@@ -1,0 +1,68 @@
+import React from 'react';
+import {Link} from 'react-router';
+import Loader from './Loader';
+import Comments from './Comments';
+import Utils from '../Utils';
+
+const BlogSingle = (props) => {
+
+    if (props.posts.isFetching || !props.posts.items) {
+        return (
+            <div className="content">
+                <Loader />
+            </div>
+        );
+
+    } else {
+        let getSlugFromUrl = props.location.pathname.split('blog/');
+        let posts = props.posts.items;
+        let postIndex;
+        let imgHtmlTag = '';
+
+        for (let i in posts) {
+            if (getSlugFromUrl[1] === posts[i].slug) {
+                postIndex = i;
+            }
+        }
+
+        const post = posts[postIndex];
+        let content = post.content.rendered;
+        let date = Utils.formatDate(post.date);
+
+        if (post.better_featured_image) {
+            imgHtmlTag = <img src={post.better_featured_image.media_details.sizes.medium.source_url} alt="Blog" role="presentation" />
+        }
+
+        return (
+            <div className="content">
+                <article className="blog-article">
+                    <h3>{post.title.rendered}</h3>
+                    <header>
+                        {imgHtmlTag}
+                    </header>
+                    <h4>Published on: {date}</h4>
+                    <section
+                        id="article-excerpt"
+                        className="article-content"
+                        dangerouslySetInnerHTML={{ __html: content }}
+                    >
+                    </section>
+
+                    <Comments
+                        commentsData={props.comments}
+                        postData={post}
+                        postComment={props.fetchAddComment}
+                        lastCommentAdded={props.lastCommentAdded}
+                    />
+
+                    <footer>
+                        <Link to="/" className="article-home-link">Take me Home</Link>
+                    </footer>
+                </article>
+            </div>
+        );
+    }
+    
+}
+
+export default BlogSingle;

@@ -1,0 +1,276 @@
+@import '../bourbon/bourbon'
+
+/* Sidebar Styles */
+.page-wrap
+	display: block
+	position: relative
+	width: 100%
+	.toggle-button
+		$left: calc(98% - 5vh)
+		+position(fixed, 0 null null #{$left})
+		display: block
+		top: 0
+		right: 1vh
+		height: 5vh
+		width: 5vh
+		line-height: 5vh
+		margin-top: 1.5vh
+		background-color: $color-primary
+		color: $navbar-text
+		text-align: center
+		font-size: 3.5vh
+		+transition(all .3s ease-in-out)
+		z-index: 11
+		cursor: pointer
+
+.navbar
+	display: flex
+	justify-content: space-around
+	align-items: center
+	+position(fixed, 0px null null 0px)
+	height: 8vh
+	line-height: 8vh
+	width: 100%
+	background-color: $navbar-background
+	color: $navbar-text
+	text-align: center
+	+transition(all .3s ease-in-out)
+	box-shadow: 0 0.5rem 1.5rem $color-text
+	z-index: 10
+	.navbar-photo-container
+		display: none
+	.navbar-logo, .navbar-social
+		position: absolute
+		top: 0
+		height: 8vh
+	.navbar-logo
+		top: 1.7vh
+		left: 1vh
+		line-height: 1vh
+		h1
+			//display: block
+			font-family: $text-logo
+			font-size: 1rem
+		h3
+			//display: inline
+			height: 1vh
+			font-size: 0.6rem
+	ul.navbar-social
+		display: flex
+		justify-content: space-around
+		align-items: center
+		width: 35%
+		margin: 0 0 0 1.7vh
+		padding: 0
+		background-color: $navbar-background
+		font-family: $text-logo
+		z-index: 10
+		li
+			margin-top: 1vh
+			float: left
+			a
+				color: $navbar-text
+				text-decoration: none
+				&:hover
+					i
+						color: $color-primary
+				i
+					font-size: 1.5rem
+					+transition(all .3s ease-in-out)
+
+	ul.navbar-menu
+		position: absolute
+		bottom: 3.5vh
+		width: 30%
+		margin: 0
+		font-family: $text-title
+		font-size: 1rem
+		li
+			height: 3vh
+			margin: 1rem 0
+			&:last-child
+				margin-bottom: 0
+			a
+				color: $navbar-text
+				+transition(all .3s ease-in-out)
+				&:hover
+					color: $color-primary
+	.navbar-footer
+		display: none
+
+#navbar-toggle
+	display: none
+	&:checked + .page-wrap
+		div.navbar
+			height: 24vh
+		.toggle-button
+			+transform(translateY(16vh))
+
+// Modular media queries
+@media #{$media-larger-than-smartphone}
+
+	.page-wrap
+		.toggle-button
+			+position(fixed, 0 null null 85%)
+			margin-top: 3vh
+
+	.navbar
+		height: 12vh
+		.navbar-photo-container
+			display: none
+		.navbar-logo, .navbar-social
+			height: 12vh
+			line-height: 12vh
+		.navbar-logo
+			top: 3.6vh
+			left: 1vh
+			line-height: 1vh
+			h1
+				font-size: 1.3rem
+		ul.navbar-social
+			height: 12vh
+			li
+				margin-top: 3vh
+				a
+					i
+						font-size: 2rem
+		ul.navbar-menu
+			bottom: 6vh
+			width: 30%
+			font-size: 1.2rem
+			li
+				margin: 3.5rem 0
+				a
+					color: $navbar-text
+
+		.navbar-footer
+			display: none
+
+	#navbar-toggle
+		&:checked + .page-wrap
+			div.navbar
+				height: 48vh
+			.toggle-button
+				+transform(translateY(36vh))
+
+@media #{$media-larger-than-phablet}
+
+@media #{$media-larger-than-tablet}
+
+@media #{$media-larger-than-desktop}
+
+	.page-wrap
+		.toggle-button
+			+position(fixed, 0 null null 25%)
+			height: 45px
+			width: 45px
+			line-height: 45px
+			margin-top: 0
+			font-size: 30px
+
+	.navbar
+		+position(fixed, 0px 0px 0px 0px)
+		height: 100vh
+		width: 25%
+		box-shadow: none
+		.navbar-photo-container
+			position: absolute
+			display: block
+			top: 5%
+			height: 20%
+			.navbar-photo
+				height: 160px
+				width: 160px
+				border-radius: 50%
+		.navbar-logo
+			top: 28%
+			height: 10%
+			line-height: 10%
+			width: 100%
+			left: 0
+			h1
+				font-size: 2.2rem
+			h3
+				margin-top: 3rem
+				font-size: 1.2rem
+		ul.navbar-social
+			justify-content: space-around
+			align-content: flex-start
+			align-items: flex-start
+			top: 35%
+			height: 5%
+			line-height: 5%
+			width: 60%
+			margin: 0
+			z-index: 0
+			li
+				height: 1.5rem
+				width: 1.5rem
+				a
+					color: $navbar-text
+					text-decoration: none
+					i
+						font-size: 3.2rem
+		ul.navbar-menu
+			position: absolute
+			top: 44%
+			height: 30%
+			width: 100%
+			margin: 0
+			padding: 0
+			font-size: 1.8rem
+			li
+				margin: 2rem 0
+				&:last-child
+					margin-bottom: 0
+				a
+					color: $navbar-text
+
+		.navbar-footer
+			position: absolute
+			bottom: 0
+			display: flex
+			line-height: 1vh
+			p
+				color: $navbar-text
+				font-family: $text-title
+				font-size: 0.8rem
+				&.credits
+					margin-right: 1rem
+				&.plus
+					margin-left: 0.5rem
+			.react-logo
+				height: 22px
+				animation: animateReactLogo 10s linear infinite
+			.wp-logo
+				height: 22px
+
+		@keyframes animateReactLogo
+			0%
+				-webkit-transform: rotate(0deg)
+				-ms-transform: rotate(0deg)
+				-o-transform: rotate(0deg)
+				transform: rotate(0deg)
+			100%
+				-webkit-transform: rotate(360deg)
+				-ms-transform: rotate(360deg)
+				-o-transform: rotate(360deg)
+				transform: rotate(360deg)
+
+	#navbar-toggle
+		&:checked + .page-wrap
+			div.navbar
+				height: 100vh
+				+transform(translateX(-100%))
+			.toggle-button
+				+transform(translateY(0))
+				left: 0px
+			.content
+				width: 100%
+				left: 0
+
+	ul.navbar-menu
+		li
+			color: $navbar-text
+
+@media #{$media-larger-than-desktopHD}

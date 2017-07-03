@@ -1,0 +1,69 @@
+// Web Fonts
+=font-face($family, $font-url)
+  @font-face
+    font-family: $family
+    src: url("#{$font-url}")
+
+// Text
+//if declared "null", properties become optional
+=text($size, $f-family: null, $l-height: null, $weight: null, $color: null)
+  font-size: $size
+  font-family: $f-family
+  line-height: $l-height
+  font-weight: $weight
+  color: $color
+
+//container margins
+=margins($mrg-vertical, $mrg-horizontal, $pdg-vertical, $pdg-horizontal)
+  margin: $mrg-vertical $mrg-horizontal
+  padding: $pdg-vertical $pdg-horizontal
+
+//transition mixin
+=transition($trans-property, $trans-duration, $trans-timing-function)
+  -webkit-transition: $trans-property $trans-duration $trans-timing-function
+  -moz-transition: $trans-property $trans-duration $trans-timing-function
+  -o-transition: $trans-property $trans-duration $trans-timing-function
+  transition: $trans-property $trans-duration $trans-timing-function
+
+//transform mixin
+=transform($val)
+  -webkit-transform: $val
+  -moz-transform: $val
+  -ms-transform: $val
+  -o-transform: $val
+  transform: $val
+
+//animate mixin
+=animate($attr, $time)
+  -webkit-transition: $attr $time ease
+  -moz-transition: $attr $time ease
+  -ms-transition: $attr $time ease
+  -o-transition: $attr $time ease
+  transition: $attr $time ease
+
+//input placeholder
+=inputPlaceholderColor($color)
+  &::-webkit-input-placeholder
+    color: $color
+  &::-moz-placeholder
+    color: $color
+  &::-ms-input-placeholder
+    color: $color
+
+// flexbox prefixer
+=flexbox()
+  display: -webkit-box
+  display: -moz-box
+  display: -ms-flexbox
+  display: -webkit-flex
+  display: flex
+
+// clearfix
+=clearfix()
+  &:after
+    content: ""
+    display: table
+    clear: both
+
+
+

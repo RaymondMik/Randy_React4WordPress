@@ -1,0 +1,35 @@
+@import '../bourbon/bourbon'
+
+.content
+	position: relative
+	width: 100%
+	margin-top: 14vh
+	text-align: center
+	+transition(all .3s ease-in-out)
+	h2
+		font-size: 2.5rem
+
+article 
+	width: 85%
+	margin: 0 auto
+	h3
+		font-size: 2rem
+
+@media #{$media-larger-than-desktop}
+	.content
+		margin-top: 0
+		width: 75%
+		left: 25%
+
+/* Content Styles */
+
+// Modular media queries
+@media #{$media-larger-than-smartphone}
+
+@media #{$media-larger-than-phablet}
+
+@media #{$media-larger-than-tablet}
+
+@media #{$media-larger-than-desktop}
+
+@media #{$media-larger-than-desktopHD}

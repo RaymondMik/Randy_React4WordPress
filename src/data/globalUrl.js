@@ -1,0 +1,1 @@
+export const globalUrl = 'http://www.ramonmiklus.com/restapi/wp-json/wp/v2';

@@ -1,8 +1,9 @@
 import fetch from 'isomorphic-fetch';
+import {globalUrl} from './globalUrl';
 
 class callsHandler {
     static getData(dataType) {
-		const url = `http://www.ramonmiklus.com/restapi/wp-json/wp/v2/${dataType}`;
+		const url = `${globalUrl}/${dataType}`;
 
 		return fetch(url).then(response => {
     
@@ -16,7 +17,7 @@ class callsHandler {
     }
 
     static postData(dataType, postId, name, email, content) {
-        const url = `http://www.ramonmiklus.com/restapi/wp-json/wp/v2/${dataType}`;
+        const url = `${globalUrl}/${dataType}`;
 
         return fetch(
             url, {

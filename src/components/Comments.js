@@ -8,7 +8,7 @@ class Comments extends Component {
         super()
         this.renderComments = this.renderComments.bind(this);
         this.state = {
-            formSubmissionError: false,
+            formSubmissionError: fals,
             renderNotification: false,
             needModeration: false,
             addCommentError: false

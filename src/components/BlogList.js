@@ -15,22 +15,26 @@ const BlogList = (props) => {
     }
 
     return (
-        <article className="blog-article">
-            <h3>{props.postData.title.rendered}</h3>
-            <header>
-                {imgHtmlTag}
-            </header>
-            <h4>Published on: {formatedDate}</h4>
-            <section
-                id="article-excerpt"
-                className="article-content"
-                dangerouslySetInnerHTML={{ __html: formatedExcerpt }}
-            >
-            </section>
-            <footer>
-                <Link to={`blog/${props.postData.slug}`}><button className="button">Read More</button></Link>
-            </footer>
-        </article>
+        <div className="row blog-article-list-element">
+            <div className="col">
+                <article>
+                    <h3>{props.postData.title.rendered}</h3>
+                    <header>
+                        {imgHtmlTag}
+                    </header>
+                    <h4>Published on: {formatedDate}</h4>
+                    <section
+                        id="article-excerpt"
+                        className="article-content"
+                        dangerouslySetInnerHTML={{ __html: formatedExcerpt }}
+                    >
+                    </section>
+                    <footer>
+                        <Link to={`blog/${props.postData.slug}`}><button type="button" className="btn btn-outline-primary btn-lg">Read More</button></Link>
+                    </footer>
+                </article>
+            </div>
+        </div>
     );
 }
 

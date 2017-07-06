@@ -113,15 +113,21 @@ class Comments extends Component {
 
         return (
             <div className="comments-container">
-
+                <h4> - Discussion - </h4>
                 { this.renderComments() }
                 { renderNotification() }
-
-                <form className="commentForm" ref="commentForm" onSubmit={this.submitCommentForm.bind(this)}>
-                    <input type="text"  ref="name" placeholder="name" ></input>
-                    <input type="email"  ref="email" placeholder="email" ></input>
-                    <input type="text"  ref="content" placeholder="comment" ></input>
-                    <input type="submit"  hidden></input>
+                <h4> Leave a comment! </h4>
+                <form className="form-group" ref="commentForm" onSubmit={this.submitCommentForm.bind(this)}>
+                    <div className="form-group">
+                        <input type="text"  ref="name" placeholder="name" className="form-control" ></input>
+                    </div>
+                    <div className="form-group">
+                        <input type="email"  ref="email" placeholder="email" className="form-control" ></input>
+                    </div>
+                    <div className="form-group">
+                        <input type="text"  ref="content" placeholder="comment" className="form-control" ></input>
+                    </div>
+                    <button type="submit" className="btn btn-outline-primary pull-right">Submit</button>
                 </form>
             </div>
         )

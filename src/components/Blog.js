@@ -25,15 +25,15 @@ const Blog = (props) => {
             }
         }
         return (
-            <div className="content">
-                <h2>- My Blog -</h2>
+            <div>
+                <h2 className="page-title">- My Blog -</h2>
                 { renderArticles() }
             </div>
         );
         
     } else {
         return (
-            <div className="content">
+            <div>
                 <Loader />
             </div>
         )

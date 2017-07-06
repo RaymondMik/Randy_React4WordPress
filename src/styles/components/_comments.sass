@@ -1,6 +1,4 @@
-@import '../bourbon/bourbon'
-
-/* CommentStyles */
+/* Comment Styles */
 
 .comments-container
   position: relative
@@ -8,12 +6,13 @@
   margin: 0 auto 2rem
   .comment
     position: relative
+    margin-bottom: 1rem
     .comment-avatar-container
-      position: absolute
+      position: relative
       display: block
-      width: 50px
-      height: 50px
-      border-radius: 50%
+      width: 5rem
+      height: 5rem
+      border-radius: 0.3rem
       background-color: transparent
       overflow: hidden
       img.comment-avatar
@@ -22,11 +21,16 @@
         left: 0
         width: 100%
     .comment-author
-
+        position: absolute
+        top: 0
+        left: 60px
+        font-size: bold
     .comment-date
 
     .comment-text
-
+        position: absolute
+        top: 1rem
+        left: 6rem
 
 
 

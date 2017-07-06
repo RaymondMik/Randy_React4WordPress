@@ -1,26 +1,21 @@
-@import '../bourbon/bourbon'
-
 /* Blog Styles */
-.content
-  h2
-    font-size: 2rem
-.blog-article
-  margin-bottom: 50px
-  padding-bottom: 50px
-  border-bottom: 1px solid $color-blog-divisory
-    font-size: 2rem
+
+.container
+  .row.blog-article-list-element
+    margin-top: 5rem
+    margin-bottom: 5rem
+    padding-bottom: 5rem
+    border-bottom: 1px solid $color-blog-divisory
+    &:last-child
+      border-bottom: none
+  
   h3
-    font-size: 1.5rem
+    margin-bottom: 3rem
   h4
-    font-size: 1rem
-  p
-    font-size: 1.1rem
-  &:last-child
-    margin-bottom: 50px
-    padding-bottom: 0px
-    border-bottom: none
+    margin: 3rem 0
   footer
-    margin-top: 2rem
+    margin-top: 5rem
+    text-align: center
   .button
     padding: 0.9rem 2.3rem
     a
@@ -28,43 +23,9 @@
 
 // Modular media queries
 @media #{$media-larger-than-smartphone}
-.content
-  h2
-    font-size: 1.8rem
-  .blog-article
-    h3
-      font-size: 1.5rem
-    h4
-      font-size: 1rem
-    p
-      font-size: 1.1rem
 
 @media #{$media-larger-than-phablet}
-  .blog-article
-    h3
-      font-size: 2.1rem
-    h4
-      font-size: 1.3rem
-    p
-      font-size: 1.5rem
 
 @media #{$media-larger-than-tablet}
 
 @media #{$media-larger-than-desktop}
-  .content
-    h2
-      margin-bottom: 4rem
-      font-size: 2.5rem
-    .blog-article
-      h3
-        font-size: 2.1rem
-      h4
-        font-size: 1.3rem
-      p
-        font-size: 1.5rem
-
-      footer
-        margin-top: 3rem
-
-
-

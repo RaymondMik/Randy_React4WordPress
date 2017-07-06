@@ -34,31 +34,33 @@ const BlogSingle = (props) => {
         }
 
         return (
-            <div className="content">
-                <article className="blog-article">
-                    <h3>{post.title.rendered}</h3>
-                    <header>
-                        {imgHtmlTag}
-                    </header>
-                    <h4>Published on: {date}</h4>
-                    <section
-                        id="article-excerpt"
-                        className="article-content"
-                        dangerouslySetInnerHTML={{ __html: content }}
-                    >
-                    </section>
+            <div className="row blog-article-list-element">
+                <div className="col">
+                    <article>
+                        <h3>{post.title.rendered}</h3>
+                        <header>
+                            {imgHtmlTag}
+                        </header>
+                        <h4>Published on: {date}</h4>
+                        <section
+                            id="article-excerpt"
+                            className="article-content"
+                            dangerouslySetInnerHTML={{ __html: content }}
+                        >
+                        </section>
 
-                    <Comments
-                        commentsData={props.comments}
-                        postData={post}
-                        postComment={props.fetchAddComment}
-                        lastCommentAdded={props.lastCommentAdded}
-                    />
+                        <Comments
+                            commentsData={props.comments}
+                            postData={post}
+                            postComment={props.fetchAddComment}
+                            lastCommentAdded={props.lastCommentAdded}
+                        />
 
-                    <footer>
-                        <Link to="/" className="article-home-link">Take me Home</Link>
-                    </footer>
-                </article>
+                        <footer>
+                            <Link to="/"><button type="button" className="btn btn-outline-primary btn-lg">Take me Home</button></Link>
+                        </footer>
+                    </article>
+                </div>
             </div>
         );
     }

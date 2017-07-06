@@ -27,14 +27,14 @@ const Page = (props) => {
                     }
 
                     return (
-                        <article key={index} className="blog-article">
-                            <h2>- {pages[index].title.rendered} -</h2>
+                        <article key={index}>
+                            <h2 className="page-title">- {pages[index].title.rendered} -</h2>
                             <header>
                                 {imgHtmlTag}
                             </header>
                             <section
                                 id="article-excerpt"
-                                className="article-content"
+                                className="page-content"
                                 dangerouslySetInnerHTML={{ __html: pageContent }}
                             >
                             </section>

@@ -1,1 +1,1 @@
-export const globalUrl = 'http://www.ramonmiklus.com/restapi/wp-json/wp/v2';
+export const globalUrl = 'http://demo.wp-api.org/wp-json/wp/v2';

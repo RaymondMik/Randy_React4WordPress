@@ -1,4 +1,4 @@
-Randy - a React/Redux application built on top on WordPress.
+Randy - a React/Redux application built on top on the WordPress REST API.
 
 Installation guide is coming soon :-)
 

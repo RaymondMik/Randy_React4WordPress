@@ -6,6 +6,9 @@ import { Router, Route, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 import store, { history } from './store';
 
+// Bootstrap 4
+import 'bootstrap/dist/css/bootstrap.css';
+
 // Sass
 import './assets/css/font-awesome.css';
 import './styles/app.sass';

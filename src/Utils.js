@@ -18,27 +18,9 @@ class Utils {
         });
     };
 
-    // dataParser(postData, data, parsedData, parsedItems) {
-    //     Object.keys(postData).map( (index) => {
-    //         let post = postData[index];
-
-    //         for (let index in postData) {
-    //             let item = postData[index];
-
-    //             for (let i in data) {
-    //                 if (data[i].id === item) {
-    //                     parsedItems.push(data[i]);
-    //                 }
-    //             }
-
-    //             var parsedData = {...post, parsedItems};
-    //         }
-    //         parsedData.push(parsedPost);
-    //     });
-
-    //     return parsedData;
-    // };
-
+    /**
+     * Parse all categories and tags and assign them to their post
+     */
     static processData(state, posts, categories, tags) {
         let parsedPosts = [];
 

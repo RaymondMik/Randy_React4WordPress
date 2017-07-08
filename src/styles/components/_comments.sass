@@ -32,7 +32,21 @@
         top: 1rem
         left: 6rem
 
+.comment-notification
+  opacity: 0
 
+.show
+  animation: 2s showNotification
+
+@keyframes showNotification
+  0%
+    opacity: 0
+  30%
+    opacity: 0.7
+  85%
+    opacity: 1
+  100%
+    opacity: 0
 
 // Modular media queries
 @media #{$media-larger-than-smartphone}

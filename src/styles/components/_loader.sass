@@ -1,6 +1,4 @@
-/********************
-// Loader component
-/********************
+/* Loader component */
 
 .loader
   width: 50px
@@ -24,7 +22,7 @@
 
   &:before
     z-index: 100
-    animation: spin 2s infinite
+    animation: 2s spin infinite
 
 
   &:after
@@ -40,15 +38,9 @@
 
 @keyframes spin
   0%
-    -webkit-transform: rotate(0deg)
-    -ms-transform: rotate(0deg)
-    -o-transform: rotate(0deg)
-    transform: rotate(0deg)
+    +transform(rotate(0deg))
   100%
-    -webkit-transform: rotate(360deg)
-    -ms-transform: rotate(360deg)
-    -o-transform: rotate(360deg)
-    transform: rotate(360deg)
+    +transform(rotate(360deg))
 
 
 

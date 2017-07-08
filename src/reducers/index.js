@@ -3,16 +3,13 @@
 
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import {    REQUEST_POSTS,
+import {    
             RECEIVE_POSTS,
-            REQUEST_CATEGORIES,
             RECEIVE_CATEGORIES,
             REQUEST_TAGS,
             RECEIVE_TAGS,
-            REQUEST_COMMENTS,
             RECEIVE_COMMENTS,
             ADD_POST_COMMENT,
-            REQUEST_PAGES,
             RECEIVE_PAGES,
 } from '../actions/index';
 
@@ -23,12 +20,6 @@ function posts(state = {
     items: []
 }, action) {
     switch (action.type) {
-        case REQUEST_POSTS:
-            return {
-                ...state,
-                isFetching: true,
-                didInvalidate: false
-            }
         case RECEIVE_POSTS:
             return {
                 ...state,
@@ -49,12 +40,6 @@ function categories(state = {
     items: []
 }, action) {
     switch (action.type) {
-        case REQUEST_CATEGORIES:
-            return {
-                ...state,
-                isFetching: true,
-                didInvalidate: false
-            }
         case RECEIVE_CATEGORIES:
             return {
                 ...state,
@@ -75,12 +60,6 @@ function tags(state = {
     items: []
 }, action) {
     switch (action.type) {
-        case REQUEST_TAGS:
-            return {
-                ...state,
-                isFetching: true,
-                didInvalidate: false
-            }
         case RECEIVE_TAGS:
             return {
                 ...state,
@@ -101,12 +80,6 @@ function comments(state = {
     items: []
 }, action) {
     switch (action.type) {
-        case REQUEST_COMMENTS:
-            return {
-                ...state,
-                isFetching: true,
-                didInvalidate: false
-            }
         case RECEIVE_COMMENTS:
             return {
                 ...state,
@@ -154,12 +127,6 @@ function pages(state = {
     items: []
 }, action) {
     switch (action.type) {
-        case REQUEST_PAGES:
-            return {
-                ...state,
-                isFetching: true,
-                didInvalidate: false
-            }
         case RECEIVE_PAGES:
             return {
                 ...state,

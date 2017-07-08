@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Utils from '../Utils';
 import Loader from './Loader';
+import {Alert} from 'reactstrap';
 
 class Comments extends Component {
     
@@ -28,7 +29,7 @@ class Comments extends Component {
                         needModeration: false,
                         renderNotification: false
                     })
-                }, 1000);
+                }, 2000);
             }
 
             if (this.props.lastCommentAdded.error) {
@@ -41,7 +42,7 @@ class Comments extends Component {
                         formSubmissionError: false,
                         renderNotification: false
                     })
-                }, 1000);
+                }, 2000);
             }
 
         }
@@ -98,17 +99,15 @@ class Comments extends Component {
     render() {
 
         const renderNotification = () => {
-            let notificationMsg = '';
-            if (this.state.needModeration) { notificationMsg = 'Your comment is awaiting for approval!' }  
-            if (this.state.formSubmissionError) { notificationMsg = 'There was an error, try again'; }
-
-            if (this.state.renderNotification) {
-                return (
-                    <div>
-                        <h4>{notificationMsg}</h4>
-                    </div>
+            let message = this.state.needModeration ? 'Your comment is awaiting for approval!' : 'There was an error, try again';
+            let color = this.state.needModeration ? 'info' : 'danger';
+            let displayClass = this.state.renderNotification ? 'show' : '';
+      
+            return (
+                    <Alert className={`comment-notification ${displayClass}`} color={color}>
+                        <strong>{message}</strong>
+                    </Alert>
                 ); 
-            }
         }
 
         return (

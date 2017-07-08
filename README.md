@@ -6,7 +6,7 @@ Randy is a simple JavaScript application I built with React.js and Redux consumi
 
 <h4>1. Set up a WordPress website</h4>
 Install a WordPress website if you haven't already. You can get WordPress <a href="https://wordpress.org/" target="blank">here</a>. From version 4.7 WordPress comes with a built-in RESTful API. You will just need to install <a href="https://wordpress.org/plugins/better-rest-api-featured-images/" target="blank">Better REST API Featured Images</a> plugin in order to use Randy.
-If you want comments to be enabled, add the following script <code>add_filter( 'rest_allow_anonymous_comments', '__return_true' );</code> either in your functions.php file or in a dedicated plugin.
+If you want to allow users to add comments through this application, add the following script <code>add_filter( 'rest_allow_anonymous_comments', '__return_true' );</code> either in your functions.php file or in a dedicated plugin.
 
 <h4>2. Get Randy</h4>
 Clone or download this project on your machine. Install all required dependencies by launching the command <code>npm install</code> in the root of the project. Once you have all dependencies setup, run <code>npm start</code> to run the application locally, the website will be served at localhost:3000.

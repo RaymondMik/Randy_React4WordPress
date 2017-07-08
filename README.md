@@ -9,7 +9,7 @@ Install a WordPress website if you haven't already. You can get WordPress <a hre
 If you want to allow users to add comments through this application, add the following script <code>add_filter( 'rest_allow_anonymous_comments', '__return_true' );</code> either in your functions.php file or in a dedicated plugin.
 
 <h4>2. Get Randy</h4>
-Clone or download this project on your machine. Install all required dependencies by launching the command <code>npm install</code> in the root of the project. Once you have all dependencies setup, run <code>npm start</code> to run the application locally, the website will be served at localhost:3000.
+Clone or download this project on your machine. Install all required dependencies by launching the command <code>npm install</code> in the root of the project. Once you have all dependencies setup, run <code>npm start</code> to run the application locally. The application will be served at localhost:3000.
 
 <h4>3. Set up</h4>
 Jump to <code>/src/data/</code> and replace the URL contained in <code>globalUrl.js</code> with the actual URL of your WordPress website.

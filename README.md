@@ -15,7 +15,7 @@ Clone or download this project on your machine. Install all required dependencie
 Jump to <code>/src/data/</code> and replace the URL contained in <code>globalUrl.js</code> with the actual URL of your WordPress website.
 
 <h3>Development Environment</h3>
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+This project was bootstrapped with Create React App https://github.com/facebookincubator/create-react-app.
 
 <h3>Usage in production</h3>
 Randy is a sperimental application I built to test how well the WordPres REST API works together with React.js and Redux. It should not be used in production before a thorough test of all its features and components.

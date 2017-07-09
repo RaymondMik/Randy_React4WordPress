@@ -1,6 +1,6 @@
 <h2>Randy - a React/Redux application for WordPress.</h2>
 
-Randy is a simple JavaScript application I built with React.js and Redux consuming JSON data served from the WordPress REST API. It supports standard features of WordPress such as posts, pages, comments, categories and tags.
+Randy is a simple JavaScript application I built with React.js and Redux consuming JSON data served by a WordPress REST API. It supports standard features of WordPress such as posts, pages, comments, categories and tags.
 
 <h3>Installation guide</h3>
 

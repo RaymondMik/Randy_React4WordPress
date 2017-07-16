@@ -14,6 +14,9 @@ Download this project on your machine. Install all required dependencies by laun
 <h4>3. Set up</h4>
 Jump to <code>/src/data/</code> and replace the URL contained in <code>globalUrl.js</code> with the actual URL of your WordPress website.
 
+<h3>Layout</h3>
+This project is built with <a href="https://v4-alpha.getbootstrap.com/" target="blank">Bootstrap 4</a> and Sass. I use Sass with a modular approach meaning that there are base modules with mixins, base variables as well as component modules containing the styiling for each React component.
+
 <h3>Development Environment</h3>
 This project was bootstrapped with Create React App https://github.com/facebookincubator/create-react-app.
 

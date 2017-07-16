@@ -15,7 +15,7 @@ Download this project on your machine. If you are cloning this repo with Git, yo
 Jump to <code>/src/data/</code> and replace the URL contained in <code>globalUrl.js</code> with the actual URL of your WordPress website.
 
 <h3>Layout</h3>
-This project is built with <a href="https://v4-alpha.getbootstrap.com/" target="blank">Bootstrap 4</a> and Sass. I use Sass with a modular approach meaning that there are base Sass modules with mixins, base variables as well as component-level modules containing styiling for each React component. Sass files are located into the <code>/src/style/</code> folder.
+This project is built with <a href="https://v4-alpha.getbootstrap.com/" target="blank">Bootstrap 4</a> and Sass. I used Sass with a modular approach meaning that there are base Sass modules with mixins and variables as well as component-level modules containing styiling for each React component. Sass files are located into the <code>/src/style/</code> folder.
 
 <h3>Development Environment</h3>
 This project was bootstrapped with Create React App https://github.com/facebookincubator/create-react-app.

@@ -1,6 +1,7 @@
 import React from 'react';
 import Loader from './Loader';
 import NotFound from './NotFound';
+import Parser from 'html-react-parser';
 
 const Page = (props) => {
  
@@ -32,11 +33,8 @@ const Page = (props) => {
                             <header>
                                 {imgHtmlTag}
                             </header>
-                            <section
-                                id="article-excerpt"
-                                className="page-content"
-                                dangerouslySetInnerHTML={{ __html: pageContent }}
-                            >
+                            <section id="article-excerpt" className="page-content">
+                                { Parser(pageContent) }
                             </section>
                             <footer>
                             </footer>

@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import Loader from './Loader';
 import Comments from './Comments';
 import Utils from '../Utils';
+import Parser from 'html-react-parser';
 
 const BlogSingle = (props) => {
 
@@ -42,11 +43,8 @@ const BlogSingle = (props) => {
                             {imgHtmlTag}
                         </header>
                         <h4>Published on: {date}</h4>
-                        <section
-                            id="article-excerpt"
-                            className="article-content"
-                            dangerouslySetInnerHTML={{ __html: content }}
-                        >
+                        <section id="article-excerpt" className="article-content">
+                            { Parser(content) }
                         </section>
 
                         <Comments

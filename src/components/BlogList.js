@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router';
+import Parser from 'html-react-parser';
 
 const BlogList = (props) => {
     let imgHtmlTag = '';
@@ -23,11 +24,8 @@ const BlogList = (props) => {
                         {imgHtmlTag}
                     </header>
                     <h4>Published on: {formatedDate}</h4>
-                    <section
-                        id="article-excerpt"
-                        className="article-content"
-                        dangerouslySetInnerHTML={{ __html: formatedExcerpt }}
-                    >
+                    <section id="article-excerpt" className="article-content">
+                        { Parser(formatedExcerpt) }
                     </section>
                     <footer>
                         <Link to={`blog/${props.postData.slug}`}><button type="button" className="btn btn-outline-primary btn-lg">Read More</button></Link>

@@ -1,2 +1,2 @@
-// Replace the URL below with that of your WordPress website 
-export const globalUrl = 'http://www.ramonmiklus.com/restapi/wp-json/wp/v2';
+// Replace the URL below with the one of your WordPress website 
+export const globalUrl = 'http://demo.wp-api.org/wp-json/wp/v2';

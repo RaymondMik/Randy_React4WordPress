@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import Utils from '../Utils';
 import Loader from './Loader';
 import {Alert} from 'reactstrap';
+import DOMPurify from 'dompurify'
 
 class Comments extends Component {
     
     constructor() {
         super()
         this.renderComments = this.renderComments.bind(this);
+
         this.state = {
             formSubmissionError: false,
             renderNotification: false,
@@ -84,14 +86,14 @@ class Comments extends Component {
 
     submitCommentForm(e) {
         e.preventDefault();
-        
+
         const postId = this.props.postData.id;
-        const name = this.refs.name.value;
-        const email = this.refs.email.value;
-        const content = this.refs.content.value;
+
+        const name = DOMPurify.sanitize(this.refs.name.value);
+        const email = DOMPurify.sanitize(this.refs.email.value);
+        const content = DOMPurify.sanitize(this.refs.content.value);
 
         this.props.postComment(postId, name, email, content);
-            
         this.refs.commentForm.reset();
 
     }

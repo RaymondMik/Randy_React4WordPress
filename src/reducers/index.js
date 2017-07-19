@@ -100,7 +100,6 @@ function lastCommentAdded(state = {
 }, action) {
     switch (action.type) {
         case ADD_POST_COMMENT:
-        console.log(99, action.comment)
         if (action.comment.data && action.comment.data.status !== 200) {
             return {
                 ...state,

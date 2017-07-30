@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import Utils from '../Utils';
 import Loader from './Loader';
 import {Alert} from 'reactstrap';
-import DOMPurify from 'dompurify'
+import DOMPurify from 'dompurify';
+import Parser from 'html-react-parser';
 
 class Comments extends Component {
     
@@ -65,10 +66,9 @@ class Comments extends Component {
                             <span className="comment-avatar-container"><img src={comment.author_avatar_urls[48]} className="comment-avatar"/></span>
                             <span className="comment-author">{comment.author_name}</span>
                             <span className="comment-date">{date}</span>
-                            <span
-                                className="comment-text"
-                                dangerouslySetInnerHTML={{ __html: comment.content.rendered }}
-                            />
+                            <span className="comment-text">
+                                { Parser(comment.content.rendered) }
+                            </span>
                         </div>
                     )
                 }

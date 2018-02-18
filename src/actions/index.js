@@ -1,18 +1,12 @@
-
 import callsHandler from '../data/callsHandler';
-export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-export const RECEIVE_PAGES = 'RECEIVE_PAGES';
-export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
-export const RECEIVE_TAGS = 'RECEIVE_TAGS';
-export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
-export const ADD_POST_COMMENT = 'ADD_POST_COMMENT';
 
-
-/*
-    Define actions used in the app
+/**
+ * Receive posts.
+ * 
+ * @param {Array} posts.
+ * @param {Array} categories.
+ * @returns {Object} action.
  */
-
-// receive posts
 export const receivePosts = (posts, categories) => {
     return {
         type: RECEIVE_POSTS,
@@ -22,52 +16,76 @@ export const receivePosts = (posts, categories) => {
     }
 }
 
-// receive categories
-export const receiveCategories = (json) => {
+/**
+ * Receive categories.
+ * 
+ * @param {Array} categories.
+ * @returns {Object} action.
+ */
+export const receiveCategories = (categories) => {
     return {
         type: RECEIVE_CATEGORIES,
-        categories: json,
+        categories,
         receivedAt: Date.now()
     }
 }
 
-// receive tags
-export const receiveTags = (json) => {
+/**
+ * Receive tags.
+ * 
+ * @param {Array} tags.
+ * @returns {Object} action.
+ */
+export const receiveTags = (tags) => {
     return {
         type: RECEIVE_TAGS,
-        tags: json,
+        tags,
         receivedAt: Date.now()
     }
 }
 
-// receive comments
-export const receiveComments = (json) => {
+/**
+ * Receive comments.
+ * 
+ * @param {Array} comments.
+ * @returns {Object} action.
+ */
+export const receiveComments = (comments) => {
     return {
         type: RECEIVE_COMMENTS,
-        comments: json,
+        comments,
         receivedAt: Date.now()
     }
 }
 
-// add comment
-export const postComment = (json) => {
+/**
+ * Post a comment.
+ * 
+ * @param {Object} comment.
+ * @returns {Object} action.
+ */
+export const postComment = (comment) => {
     return {
         type: ADD_POST_COMMENT,
-        comment: json,
+        comment,
     }
 }
 
-// receive pages
-export const receivePages = (json) => {
+/**
+ * Receive pages.
+ * 
+ * @param {Array} pages.
+ * @returns {Object} action.
+ */
+export const receivePages = (pages) => {
     return {
         type: RECEIVE_PAGES,
-        pages: json,
+        pages,
         receivedAt: Date.now()
     }
 }
 
-
-// thunk action creator Posts
+// thunk action creator fetchPosts
 export function fetchPosts() {
     return function (dispatch) {
         return callsHandler.getData('posts').then((json) => {
@@ -80,7 +98,7 @@ export function fetchPosts() {
     }
 }
 
-// thunk action creator Categories
+// thunk action creator fetchCategories
 export function fetchCategories() {
     return function (dispatch) {
         return callsHandler.getData('categories').then(json => {
@@ -94,7 +112,7 @@ export function fetchCategories() {
       }
 }
 
-// thunk action creator Categories
+// thunk action creator fetchTags
 export function fetchTags() {
     return function (dispatch) {
         return callsHandler.getData('tags').then(json => {
@@ -108,7 +126,7 @@ export function fetchTags() {
       }
 }
 
-// thunk action creator Comments
+// thunk action creator fetchComments
 export function fetchComments() {
     return function (dispatch) {
         return callsHandler.getData('comments').then(json => {
@@ -122,7 +140,7 @@ export function fetchComments() {
       }
 }
 
-// thunk action creator add Comments
+// thunk action creator fetchAddComment
 export function fetchAddComment(postId, name, email, content) {
     return function (dispatch) {
         return callsHandler.postData('comments', postId, name, email, content).then(json => {
@@ -142,7 +160,7 @@ export function fetchAddComment(postId, name, email, content) {
       }
 }
 
-// thunk action creator Pages
+// thunk action creator fetchPages
 export function fetchPages() {
     return function (dispatch) {
         return callsHandler.getData('pages').then(json => {
@@ -156,5 +174,10 @@ export function fetchPages() {
       }
 }
 
-
-
+// export actions
+export const RECEIVE_POSTS = 'RECEIVE_POSTS';
+export const RECEIVE_PAGES = 'RECEIVE_PAGES';
+export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
+export const RECEIVE_TAGS = 'RECEIVE_TAGS';
+export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
+export const ADD_POST_COMMENT = 'ADD_POST_COMMENT';

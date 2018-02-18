@@ -27,7 +27,13 @@ const comments = (state = {
     }
 };
 
-//Add comment
+/**
+ * Add a comment reducer.
+ * 
+ * @param {Object} state.
+ * @param {Object} action.
+ * @returns {Object} a copy of the state modified according to the action dispatched.
+ */
 const lastCommentAdded = (state = {
     item: {},
     error: false

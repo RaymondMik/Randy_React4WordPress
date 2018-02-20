@@ -7,7 +7,7 @@ import callsHandler from '../data/callsHandler';
  * @param {Array} categories.
  * @returns {Object} action.
  */
-export const receivePosts = (posts, categories) => {
+const receivePosts = (posts, categories) => {
     return {
         type: RECEIVE_POSTS,
         posts,
@@ -22,7 +22,7 @@ export const receivePosts = (posts, categories) => {
  * @param {Array} categories.
  * @returns {Object} action.
  */
-export const receiveCategories = (categories) => {
+const receiveCategories = (categories) => {
     return {
         type: RECEIVE_CATEGORIES,
         categories,
@@ -36,7 +36,7 @@ export const receiveCategories = (categories) => {
  * @param {Array} tags.
  * @returns {Object} action.
  */
-export const receiveTags = (tags) => {
+const receiveTags = (tags) => {
     return {
         type: RECEIVE_TAGS,
         tags,
@@ -50,7 +50,7 @@ export const receiveTags = (tags) => {
  * @param {Array} comments.
  * @returns {Object} action.
  */
-export const receiveComments = (comments) => {
+const receiveComments = (comments) => {
     return {
         type: RECEIVE_COMMENTS,
         comments,
@@ -64,7 +64,7 @@ export const receiveComments = (comments) => {
  * @param {Object} comment.
  * @returns {Object} action.
  */
-export const postComment = (comment) => {
+const postComment = (comment) => {
     return {
         type: ADD_POST_COMMENT,
         comment,
@@ -77,7 +77,7 @@ export const postComment = (comment) => {
  * @param {Array} pages.
  * @returns {Object} action.
  */
-export const receivePages = (pages) => {
+const receivePages = (pages) => {
     return {
         type: RECEIVE_PAGES,
         pages,

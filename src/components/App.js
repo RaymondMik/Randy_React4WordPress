@@ -7,15 +7,13 @@ import Main from './Main';
 
 // Get State
 const mapStateToProps = (state) => {
-    let utils = new Utils();
-
     Utils.isDataFetched(state.posts.items).then( () => {
         return Utils.isDataFetched(state.categories.items);
     }).then( () => {
         return Utils.isDataFetched(state.tags.items);
     }).then( () => {
-        return Utils.processData(
-                state, state.posts.items, 
+        return Utils.processPostData(
+                state.posts.items, 
                 state.categories.items,
                 state.tags.items,
             );

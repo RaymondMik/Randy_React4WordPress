@@ -1,5 +1,4 @@
 class Utils {
-
     /**
      * Formats date to a readable human form
      */
@@ -10,6 +9,12 @@ class Utils {
         return formatedDate;
     }
 
+    /**
+     * Formats date to a readable human form
+     * 
+     * @param data.
+     * @returns {Promise}.
+     */
     static isDataFetched(data) {
         return new Promise(function(resolve) {
             if (data) {
@@ -19,49 +24,46 @@ class Utils {
     };
 
     /**
-     * Parse all categories and tags and assign them to their post
-     */
-    static processData(state, posts, categories, tags) {
-        let parsedPosts = [];
+     * Assign categories and tags to related posts.
+     * 
+     * @param {Array} posts.
+     * @param {Array} categories.
+     * @param {Array} tags.
+     * @returns {Array} posts.
+    */
+    static processPostData(posts, categories, tags) {
+        const orderedCategories = {};
+        const orderedTags = {};
 
-        Object.keys(posts).map( (index) => {
-            let post = posts[index];
+        // map categories
+        categories.forEach((category) => {
+            orderedCategories[category.id] = category;
+        });
 
-            let parsedCategories = [];
-            let parsedTags = [];
-            let parsedComments = [];
+        // map tags
+        tags.forEach((tag) => {
+            orderedTags[tag.id] = tag;
+        });
 
-            // parse Categories
-            for (let index in post.categories) {
-                let category = post.categories[index];
-
-                for (let i in categories) {
-                    if (categories[i].id === category) {
-                        parsedCategories.push(categories[i]);
-                    }
+        // map posts with categories and tags
+        posts.forEach( (post, index) => {
+            post.parsedCategories = [];
+            post.categories.forEach((postCategory) => {
+                if (orderedCategories[postCategory]) {
+                    post.parsedCategories.push(orderedCategories[postCategory]);
                 }
-            }
+            });
 
-            // parse tags
-            for (let index in post.tags) {
-                let tag = post.tags[index];
-
-                for (let i in tags) {
-                    if (tags[i].id === tag) {
-                        parsedTags.push(tags[i]);
-                    }
+            post.parsedTags = [];
+            post.tags.forEach((postTag) => {
+                if (orderedTags[postTag]) {
+                    post.parsedTags.push(orderedTags[postTag]);
                 }
-            }
-
-            let parsedPost = {...post, parsedCategories, parsedTags};
-
-            parsedPosts.push(parsedPost);
-
+            });
         });
         
-        state.posts.items = parsedPosts;
+        return posts;
     }
-
 }
 
 export default Utils;

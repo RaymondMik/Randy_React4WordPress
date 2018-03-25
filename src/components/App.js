@@ -1,33 +1,20 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Utils from '../Utils.js';
 import * as actionCreators from '../actions/index';
-
+import * as selectors from '../reducers';
 import Main from './Main';
 
 // Get State
 const mapStateToProps = (state) => {
-    Utils.isDataFetched(state.posts.items).then( () => {
-        return Utils.isDataFetched(state.categories.items);
-    }).then( () => {
-        return Utils.isDataFetched(state.tags.items);
-    }).then( () => {
-        return Utils.processPostData(
-                state.posts.items, 
-                state.categories.items,
-                state.tags.items,
-            );
-    });
-
     return {
-        posts: state.posts,
-        categories: state.categories,
-        tags: state.tags,
-        comments: state.comments,
-        pages: state.pages,
-        lastCommentAdded: state.lastCommentAdded
+        posts: selectors.selectPostData(state),
+        categories: selectors.selectCategories(state),
+        tags: selectors.selectTags(state),
+        comments: selectors.selectComments(state),
+        pages: selectors.selectPages(state),
+        apod: selectors.selectApod(state),
+        postedComments: selectors.selectPostedComments(state)
     }
-
 }
 
 // Dispatch state via props using actionCreators

@@ -7,7 +7,7 @@ import Main from './Main';
 // Get State
 const mapStateToProps = (state) => {
     return {
-        posts: selectors.selectPostData(state),
+        posts: selectors.selectPosts(state),
         categories: selectors.selectCategories(state),
         tags: selectors.selectTags(state),
         comments: selectors.selectComments(state),

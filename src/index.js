@@ -12,7 +12,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 // Sass
 import './assets/css/font-awesome.css';
 import './styles/app.sass';
-import { fetchPosts, fetchCategories, fetchComments, fetchTags, fetchPages } from './actions/index';
 
 // Components
 import App from './components/App';
@@ -20,12 +19,6 @@ import Blog from './components/Blog';
 import Page from './components/Page';
 import BlogSingle from './components/BlogSingle';
 import NotFound from './components/NotFound';
-
-store.dispatch(fetchPosts());
-store.dispatch(fetchCategories());
-store.dispatch(fetchComments());
-store.dispatch(fetchTags());
-store.dispatch(fetchPages());
 
 // Render App
 render((

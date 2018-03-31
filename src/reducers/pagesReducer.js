@@ -1,26 +1,44 @@
-import { RECEIVE_PAGES } from '../actions/index';
+import { 
+    RECEIVE_PAGES, 
+    RECEIVE_PAGES_SUCCESS, 
+    RECEIVE_PAGES_FAILURE } from '../actions/index';
+
+const initialState = {
+    isFetching: true,
+    errors: false,
+    items: []
+};
 
 /**
- * Get pages reducer.
+ * Get pages.
  * 
  * @param {Object} state.
  * @param {Object} action.
  * @returns {Object} a copy of the state modified according to the action dispatched.
  */
-const pages = (state = {
-    isFetching: false,
-    didInvalidate: false,
-    items: []
-}, action) => {
+const pages = (state = initialState, action) => {
     switch (action.type) {
         case RECEIVE_PAGES:
             return {
                 ...state,
+                isFetching: true,
+                errors: false
+            };
+        case RECEIVE_PAGES_SUCCESS:
+            return {
+                ...state,
                 isFetching: false,
-                didInvalidate: false,
+                errors: false,
                 items: action.pages,
                 receivedAt: action.receivedAt
-            }
+            };
+        case RECEIVE_PAGES_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                errors: action.error,
+                receivedAt: action.receivedAt
+            };
         default:
             return state;
     }

@@ -1,183 +1,262 @@
-import callsHandler from '../data/callsHandler';
+export const RECEIVE_POSTS = 'RECEIVE_POSTS';
+export const RECEIVE_POSTS_SUCCESS = 'RECEIVE_POSTS_SUCCESS';
+export const RECEIVE_POSTS_FAILURE = 'RECEIVE_POSTS_FAILURE';
+export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
+export const RECEIVE_CATEGORIES_SUCCESS = 'RECEIVE_CATEGORIES_SUCCESS';
+export const RECEIVE_CATEGORIES_FAILURE = 'RECEIVE_CATEGORIES_FAILURE';
+export const RECEIVE_TAGS = 'RECEIVE_TAGS';
+export const RECEIVE_TAGS_SUCCESS = 'RECEIVE_TAGS_SUCCESS';
+export const RECEIVE_TAGS_FAILURE = 'RECEIVE_TAGS_FAILURE';
+export const RECEIVE_PAGES = 'RECEIVE_PAGES';
+export const RECEIVE_PAGES_SUCCESS = 'RECEIVE_PAGES_SUCCESS';
+export const RECEIVE_PAGES_FAILURE = 'RECEIVE_PAGES_FAILURE';
+export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
+export const RECEIVE_COMMENTS_SUCCESS = 'RECEIVE_COMMENTS_SUCCESS';
+export const RECEIVE_COMMENTS_FAILURE = 'RECEIVE_COMMENTS_FAILURE';
+export const POST_COMMENT = 'POST_COMMENT';
+export const POST_COMMENT_SUCCESS = 'POST_COMMENT_SUCCESS';
+export const POST_COMMENT_FAILURE = 'POST_COMMENT_FAILURE';
 
 /**
  * Receive posts.
  * 
- * @param {Array} posts.
- * @param {Array} categories.
  * @returns {Object} action.
  */
-const receivePosts = (posts, categories) => {
+export const receivePosts = () => {
     return {
         type: RECEIVE_POSTS,
-        posts,
-        categories,
-        receivedAt: Date.now()
+        sentAt: new Date()
     }
-}
+};
+
+/**
+ * Posts successfully received.
+ * 
+ * @param {Array} posts.
+ * @returns {Object} action.
+ */
+export const receivePostsSuccess = (posts) => {
+    return {
+        type: RECEIVE_POSTS_SUCCESS,
+        posts,
+        receivedAt: new Date()
+    }
+};
+
+/**
+ * Failed to fetch posts.
+ * 
+ * @param {Object} errors.
+ * @returns {Object} action.
+ */
+export const receivePostsFailure = (errors) => {
+    return {
+        type: RECEIVE_POSTS_FAILURE,
+        errors,
+        receivedAt: new Date()
+    }
+};
 
 /**
  * Receive categories.
  * 
+ * @returns {Object} action.
+ */
+export const receiveCategories = () => {
+    return {
+        type: RECEIVE_CATEGORIES,
+        receivedAt: new Date()
+    }
+};
+
+/**
+ * Categories successfully received.
+ * 
  * @param {Array} categories.
  * @returns {Object} action.
  */
-const receiveCategories = (categories) => {
+export const receiveCategoriesSuccess = (categories) => {
     return {
-        type: RECEIVE_CATEGORIES,
+        type: RECEIVE_CATEGORIES_SUCCESS,
         categories,
-        receivedAt: Date.now()
+        receivedAt: new Date()
     }
-}
+};
+
+/**
+ * Failed to fetch categories.
+ * 
+ * @param {Object} errors.
+ * @returns {Object} action.
+ */
+export const receiveCategoriesFailure = (errors) => {
+    return {
+        type: RECEIVE_CATEGORIES_FAILURE,
+        errors,
+        receivedAt: new Date()
+    }
+};
 
 /**
  * Receive tags.
  * 
+ * @returns {Object} action.
+ */
+export const receiveTags = () => {
+    return {
+        type: RECEIVE_TAGS,
+        receivedAt: new Date()
+    }
+};
+
+/**
+ * Tags successfully received.
+ * 
  * @param {Array} tags.
  * @returns {Object} action.
  */
-const receiveTags = (tags) => {
+export const receiveTagsSuccess = (tags) => {
     return {
-        type: RECEIVE_TAGS,
+        type: RECEIVE_TAGS_SUCCESS,
         tags,
-        receivedAt: Date.now()
+        receivedAt: new Date()
     }
-}
+};
+
+/**
+ * Failed to fetch categories.
+ * 
+ * @param {Object} errors.
+ * @returns {Object} action.
+ */
+export const receiveTagsFailure = (errors) => {
+    return {
+        type: RECEIVE_TAGS_FAILURE,
+        errors,
+        receivedAt: new Date()
+    }
+};
 
 /**
  * Receive comments.
  * 
+ * @returns {Object} action.
+ */
+export const receiveComments = () => {
+    return {
+        type: RECEIVE_COMMENTS,
+        receivedAt: new Date()
+    }
+};
+
+/**
+ * Comments successfully received.
+ * 
  * @param {Array} comments.
  * @returns {Object} action.
  */
-const receiveComments = (comments) => {
+export const receiveCommentsSuccess = (comments) => {
     return {
-        type: RECEIVE_COMMENTS,
+        type: RECEIVE_COMMENTS_SUCCESS,
         comments,
-        receivedAt: Date.now()
+        receivedAt: new Date()
     }
-}
+};
 
 /**
- * Post a comment.
+ * Failed to fetch comments.
  * 
- * @param {Object} comment.
+ * @param {Object} errors.
  * @returns {Object} action.
  */
-const postComment = (comment) => {
+export const receiveCommentsFailure = (errors) => {
     return {
-        type: ADD_POST_COMMENT,
-        comment,
+        type: RECEIVE_COMMENTS_FAILURE,
+        errors,
+        receivedAt: new Date()
     }
-}
+};
+
+/**
+ * Post a comment. Dispatched in the UI, is watched by Sagas.
+ * 
+ * @param {number} postId.
+ * @param {string} name.
+ * @param {string} email.
+ * @param {string} content.
+ * @returns {Object} action.
+ */
+export const postComment = (postId, name, email, content) => {
+    return {
+        type: POST_COMMENT,
+        postId, 
+        name, 
+        email, 
+        content
+    }
+};
+
+/**
+ * Comment posted successfully.
+ * 
+ * @param {Object} response.
+ * @returns {Object} action.
+ */
+export const postCommentSuccess = (response) => {
+    return {
+        type: POST_COMMENT_SUCCESS,
+        response
+    }
+};
+
+/**
+ * Failed to post comment.
+ * 
+ * @returns {Object} action.
+ */
+export const postCommentFailure = (error) => {
+    return {
+        type: POST_COMMENT_FAILURE,
+        error
+    }
+};
 
 /**
  * Receive pages.
  * 
+ * @returns {Object} action.
+ */
+export const receivePages = () => {
+    return {
+        type: RECEIVE_PAGES,
+        receivedAt: new Date()
+    }
+};
+
+/**
+ * Pages successfully received.
+ * 
  * @param {Array} pages.
  * @returns {Object} action.
  */
-const receivePages = (pages) => {
+export const receivePagesSuccess = (pages) => {
     return {
-        type: RECEIVE_PAGES,
+        type: RECEIVE_PAGES_SUCCESS,
         pages,
-        receivedAt: Date.now()
+        receivedAt: new Date()
     }
-}
+};
 
-// thunk action creator fetchPosts
-export function fetchPosts() {
-    return function (dispatch) {
-        return callsHandler.getData('posts').then((json) => {
-
-            dispatch(receivePosts(json)) 
-
-        }).catch(error => {
-            throw(error);
-        })
+/**
+ * Failed to fetch pages.
+ * 
+ * @param {Object} errors.
+ * @returns {Object} action.
+ */
+export const receivePagesFailure = (errors) => {
+    return {
+        type: RECEIVE_PAGES_FAILURE,
+        errors,
+        receivedAt: new Date()
     }
-}
-
-// thunk action creator fetchCategories
-export function fetchCategories() {
-    return function (dispatch) {
-        return callsHandler.getData('categories').then(json => {
-
-            dispatch(receiveCategories(json))
-
-        }).catch(error => {
-            throw(error);
-        })
-        
-      }
-}
-
-// thunk action creator fetchTags
-export function fetchTags() {
-    return function (dispatch) {
-        return callsHandler.getData('tags').then(json => {
-
-            dispatch(receiveTags(json))
-
-        }).catch(error => {
-            throw(error);
-        })
-        
-      }
-}
-
-// thunk action creator fetchComments
-export function fetchComments() {
-    return function (dispatch) {
-        return callsHandler.getData('comments').then(json => {
-
-            dispatch(receiveComments(json))
-
-        }).catch(error => {
-            throw(error);
-        })
-        
-      }
-}
-
-// thunk action creator fetchAddComment
-export function fetchAddComment(postId, name, email, content) {
-    return function (dispatch) {
-        return callsHandler.postData('comments', postId, name, email, content).then(json => {
-        
-            dispatch(postComment(json))
-
-        }).then( () => {
-            return callsHandler.getData('comments').then(json => {
-
-                dispatch(receiveComments(json))
-
-            })
-        }).catch(error => {
-            throw(error);
-        })
-        
-      }
-}
-
-// thunk action creator fetchPages
-export function fetchPages() {
-    return function (dispatch) {
-        return callsHandler.getData('pages').then(json => {
-
-            dispatch(receivePages(json))
-            
-        }).catch(error => {
-            throw(error);
-        })
-        
-      }
-}
-
-// export actions
-export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-export const RECEIVE_PAGES = 'RECEIVE_PAGES';
-export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
-export const RECEIVE_TAGS = 'RECEIVE_TAGS';
-export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
-export const ADD_POST_COMMENT = 'ADD_POST_COMMENT';
+};

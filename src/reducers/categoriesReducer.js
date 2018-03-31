@@ -1,26 +1,42 @@
-import { RECEIVE_CATEGORIES } from '../actions/index';
+import { 
+    RECEIVE_CATEGORIES, 
+    RECEIVE_CATEGORIES_SUCCESS, 
+    RECEIVE_CATEGORIES_FAILURE } from '../actions/index';
+
+const initialState = {
+    isFetching: true,
+    errors: false,
+    items: []
+};
 
 /**
- * Get categories reducer.
+ * Get categories.
  * 
  * @param {Object} state.
  * @param {Object} action.
  * @returns {Object} a copy of the state modified according to the action dispatched.
  */
-const categories = (state = {
-    isFetching: false,
-    didInvalidate: false,
-    items: []
-}, action) => {
+const categories = (state = initialState, action) => {
     switch (action.type) {
         case RECEIVE_CATEGORIES:
             return {
                 ...state,
+                isFetching: true
+            };
+        case RECEIVE_CATEGORIES_SUCCESS:
+            return {
+                ...state,
                 isFetching: false,
-                didInvalidate: false,
                 items: action.categories,
                 receivedAt: action.receivedAt
-            }
+            };
+        case RECEIVE_CATEGORIES_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                errors: action.error,
+                receivedAt: action.receivedAt
+            };
         default:
             return state;
     }

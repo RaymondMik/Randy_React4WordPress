@@ -22,48 +22,6 @@ class Utils {
             } 
         });
     };
-
-    /**
-     * Assign categories and tags to related posts.
-     * 
-     * @param {Array} posts.
-     * @param {Array} categories.
-     * @param {Array} tags.
-     * @returns {Array} posts.
-    */
-    static processPostData(posts, categories, tags) {
-        const orderedCategories = {};
-        const orderedTags = {};
-
-        // map categories
-        categories.forEach((category) => {
-            orderedCategories[category.id] = category;
-        });
-
-        // map tags
-        tags.forEach((tag) => {
-            orderedTags[tag.id] = tag;
-        });
-
-        // map posts with categories and tags
-        posts.forEach( (post, index) => {
-            post.parsedCategories = [];
-            post.categories.forEach((postCategory) => {
-                if (orderedCategories[postCategory]) {
-                    post.parsedCategories.push(orderedCategories[postCategory]);
-                }
-            });
-
-            post.parsedTags = [];
-            post.tags.forEach((postTag) => {
-                if (orderedTags[postTag]) {
-                    post.parsedTags.push(orderedTags[postTag]);
-                }
-            });
-        });
-        
-        return posts;
-    }
 }
 
 export default Utils;

@@ -1,63 +1,93 @@
-import { RECEIVE_COMMENTS } from '../actions/index';
-import { ADD_POST_COMMENT } from '../actions/index';
+import { 
+    RECEIVE_COMMENTS, 
+    RECEIVE_COMMENTS_SUCCESS, 
+    RECEIVE_COMMENTS_FAILURE, 
+    POST_COMMENT,
+    POST_COMMENT_SUCCESS,
+    POST_COMMENT_FAILURE, } from '../actions/index';
+
+const initialReceiveState = {
+    isFetching: true,
+    items: [],
+    errors: false,
+    receivedAt: null
+};
 
 /**
- * Get comments reducer.
+ * Get comments.
  * 
  * @param {Object} state.
  * @param {Object} action.
  * @returns {Object} a copy of the state modified according to the action dispatched.
  */
-const comments = (state = {
-    isFetching: false,
-    didInvalidate: false,
-    items: []
-}, action) => {
+const comments = (state = initialReceiveState, action) => {
     switch (action.type) {
         case RECEIVE_COMMENTS:
             return {
                 ...state,
+                isFetching: true
+            };
+        case RECEIVE_COMMENTS_SUCCESS:
+            return {
+                ...state,
                 isFetching: false,
-                didInvalidate: false,
                 items: action.comments,
                 receivedAt: action.receivedAt
-            }
+            };
+        case RECEIVE_COMMENTS_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                errors: action.error,
+                receivedAt: action.receivedAt
+            };
         default:
             return state;
     }
 };
 
+const initialPostState = {
+    isPosting: false,
+    items: [],
+    error: false,
+    receivedAt: null
+};
+
 /**
- * Add a comment reducer.
+ * Post a comment.
  * 
  * @param {Object} state.
  * @param {Object} action.
  * @returns {Object} a copy of the state modified according to the action dispatched.
  */
-const lastCommentAdded = (state = {
-    item: {},
-    error: false
-}, action) => {
+const postedComments = (state = initialPostState, action) => {
     switch (action.type) {
-        case ADD_POST_COMMENT:
-        if (action.comment.data && action.comment.data.status !== 200) {
+        case POST_COMMENT:
             return {
                 ...state,
-                item: {},
-                error: true
-            }
-        } else {
-            return {
-                ...state,
-                item: action.comment,
+                isPosting: true,
                 error: false
-            }
-        }
-            
+            };
+        case POST_COMMENT_SUCCESS:
+            const items = [...state.items, action.response];
+
+            return {
+                ...state,
+                isPosting: false,
+                items,
+                error: false,
+                receivedAt: action.receivedAt
+            };
+        case POST_COMMENT_FAILURE:
+            return {
+                ...state,
+                isPosting: false,
+                error: action.error,
+                receivedAt: action.receivedAt
+            };
         default:
             return state;
     }
 };
 
-export { comments, lastCommentAdded };
-
+export { comments, postedComments };

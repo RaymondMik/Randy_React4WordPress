@@ -1,44 +1,54 @@
-import React, { Component } from 'react';
+import React from 'react';
 import BlogList from './BlogList';
 import Loader from './Loader';
 
 const Blog = (props) => {
-    if (props.posts.items) {
-        const posts = props.posts.items;
+    // Loading
+    if (props.posts.isFetching) {
+        return  <Loader />;
+    }
 
-        function renderArticles() {
-            if (posts.length > 0) {
-                return (
-                    posts.map( (post, i) => {
-                        return (
-                            <BlogList
-                                key={i}
-                                postData={post}
-                            />
-                        );
-                    })
-                );
-            } else {
-                return (
-                    <h3>There are no posts available!</h3>
-                )
-            }
-        }
+    // Network error
+    if (props.posts.errors) {
         return (
-            <div>
-                <h2 className="page-title">- My Blog -</h2>
+            <div className="content">
+                <h3>There was an error while fetching pages!</h3>
+            </div>
+        );
+    }
+
+    // No posts available
+    if (!props.pages.isFetching && !props.pages.items.length) {
+        return (
+            <div className="content">
+                <h3>There are no posts available!</h3>
+            </div>
+        );
+    }
+
+    // Render posts
+    if (!props.posts.isFetching && props.posts.items.length) {
+        function renderArticles() {
+            const posts = props.posts.items;
+            return (
+                posts.map( (post, i) => {
+                    return (
+                        <BlogList
+                            key={i}
+                            postData={post}
+                        />
+                    );
+                })
+            );
+        }
+
+        return (
+            <div className="content">
+                <h2>- My Blog -</h2>
                 { renderArticles() }
             </div>
         );
-        
-    } else {
-        return (
-            <div>
-                <Loader />
-            </div>
-        )
-    }
-
+    } 
 }
 
 export default Blog;

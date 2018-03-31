@@ -2,33 +2,46 @@ import React from 'react';
 import {Link} from 'react-router';
 import Loader from './Loader';
 import Comments from './Comments';
+import NotFound from './NotFound';
 import Utils from '../Utils';
 import Parser from 'html-react-parser';
 
 const BlogSingle = (props) => {
+    // Loading
+    if (props.posts.isFetching) {
+        return <Loader />;
+    }
 
-    if (props.posts.isFetching || !props.posts.items) {
+    // Network error
+    if (props.posts.errors) {
         return (
             <div className="content">
-                <Loader />
+                <h3>There was an error while fetching this post!</h3>
             </div>
         );
+    }
 
-    } else {
+    // Render post
+    if (!props.posts.isFetching && props.posts.items.length) {
         let getSlugFromUrl = props.location.pathname.split('blog/');
         let posts = props.posts.items;
-        let postIndex;
-        let imgHtmlTag = '';
+        let post;
 
         for (let i in posts) {
             if (getSlugFromUrl[1] === posts[i].slug) {
-                postIndex = i;
+                post = posts[i];
             }
         }
 
-        const post = posts[postIndex];
-        let content = post.content.rendered;
-        let date = Utils.formatDate(post.date);
+        // If post does not exist
+        if (!post) {
+            return <NotFound />;
+        }
+
+        // if post exists
+        const content = post.content.rendered;
+        const date = Utils.formatDate(post.date);
+        let imgHtmlTag = '';
 
         if (post.better_featured_image) {
             imgHtmlTag = <img src={post.better_featured_image.media_details.sizes.medium.source_url} alt="Blog" role="presentation" />

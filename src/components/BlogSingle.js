@@ -43,8 +43,9 @@ const BlogSingle = (props) => {
         const date = Utils.formatDate(post.date);
         let imgHtmlTag = '';
 
-        if (post.better_featured_image) {
-            imgHtmlTag = <img src={post.better_featured_image.media_details.sizes.medium.source_url} alt="Blog" role="presentation" />
+        // display post featured image
+        if (post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0].media_details.sizes.medium) {
+            imgHtmlTag = <img src={post._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url} alt="Blog" />
         }
 
         return (
@@ -63,7 +64,8 @@ const BlogSingle = (props) => {
                         <Comments
                             commentsData={props.comments}
                             postData={post}
-                            postComment={props.fetchAddComment}
+                            postComment={props.postComment}
+                            postedComments={props.postedComments}
                             lastCommentAdded={props.lastCommentAdded}
                         />
 

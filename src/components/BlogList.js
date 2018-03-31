@@ -10,9 +10,10 @@ const BlogList = (props) => {
     let date = props.postData.date;
     let parseDate = date ? date.indexOf('T') : 0;
     let formatedDate = date ? date.substring(0, parseDate) : '';
-
-    if (props.postData.better_featured_image) {
-        imgHtmlTag = <img src={props.postData.better_featured_image.media_details.sizes.medium.source_url} alt="Blog" />
+    
+    // display post featured image
+    if (props.postData._embedded['wp:featuredmedia'] && props.postData._embedded['wp:featuredmedia'][0].media_details.sizes.medium) {
+        imgHtmlTag = <img src={props.postData._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url} alt="Blog" />
     }
 
     return (

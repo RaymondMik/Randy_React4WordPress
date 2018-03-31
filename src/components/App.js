@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actionCreators from '../actions/index';
+import { postComment } from '../actions/index';
 import * as selectors from '../reducers';
 import Main from './Main';
 
@@ -19,7 +19,7 @@ const mapStateToProps = (state) => {
 
 // Dispatch state via props using actionCreators
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators(actionCreators, dispatch);
+    return bindActionCreators({ postComment }, dispatch);
 }
 
 // Connect App component with Main component

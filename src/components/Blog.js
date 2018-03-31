@@ -3,6 +3,21 @@ import BlogList from './BlogList';
 import Loader from './Loader';
 
 const Blog = (props) => {
+    // render articles logic
+    const renderArticles = () => {
+        const posts = props.posts.items;
+        return (
+            posts.map( (post, i) => {
+                return (
+                    <BlogList
+                        key={i}
+                        postData={post}
+                    />
+                );
+            })
+        );
+    };
+
     // Loading
     if (props.posts.isFetching) {
         return  <Loader />;
@@ -28,20 +43,6 @@ const Blog = (props) => {
 
     // Render posts
     if (!props.posts.isFetching && props.posts.items.length) {
-        function renderArticles() {
-            const posts = props.posts.items;
-            return (
-                posts.map( (post, i) => {
-                    return (
-                        <BlogList
-                            key={i}
-                            postData={post}
-                        />
-                    );
-                })
-            );
-        }
-
         return (
             <div className="content">
                 <h2>- My Blog -</h2>

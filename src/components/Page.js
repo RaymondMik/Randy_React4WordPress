@@ -4,67 +4,82 @@ import NotFound from './NotFound';
 import Parser from 'html-react-parser';
 
 const Page = (props) => {
- 
-    if (props.pages.items) {
-        const pages = props.pages.items;
+    // Loading
+    if (props.pages.isFetching) {
+        return <Loader />;
+    }
 
-        let renderPage = () => {
-            if (pages.length > 0) {
-                let getPageFromUrl = props.location.pathname.split('pages/');
-                let index;
-                Object.keys(pages).map(key => { 
-                    if (pages[key].slug === getPageFromUrl[1]) {
-                        index = key;
-                        return index
-                    }
-                });
+    // Network error
+    if (props.pages.errors) {
+        return (
+            <div className="content">
+                <h3>There was an error while fetching pages!</h3>
+            </div>
+        );
+    }
 
-                if (index) {
-                    let imgHtmlTag = '';
-                    let pageContent = pages[index].content.rendered;
+    // No pages available
+    if (!props.pages.isFetching && !props.pages.items.length) {
+        return (
+            <div className="content">
+                <h3>There are no pages available!</h3>
+            </div>
+        );
+    }
 
-                    if (pages[index].better_featured_image) {
-                        imgHtmlTag = <img src={pages[index].better_featured_image.media_details.sizes.large.source_url} className="about-page-image" role="presentation" />
-                    }
+    // Render page
+    if (!props.pages.isFetching && props.pages.items.length) {
+        const renderPage = () => {
+            // get page name [1] from url
+            const getPageFromUrl = props.location.pathname.split('pages/');
+            const pages = props.pages.items;
+            let index;
 
-                    return (
-                        <article key={index}>
-                            <h2 className="page-title">- {pages[index].title.rendered} -</h2>
-                            <header>
-                                {imgHtmlTag}
-                            </header>
-                            <section id="article-excerpt" className="page-content">
-                                { Parser(pageContent) }
-                            </section>
-                            <footer>
-                            </footer>
-                        </article>
-                    )
+            // get page content according to url
+            Object.keys(pages).map(key => { 
+                if (pages[key].slug === getPageFromUrl[1]) {
+                    index = key;
+                    return index
                 } else {
-                    return (
-                        <NotFound />
-                    )
+                    return null;
                 }
+            });
 
-            } else {
-                return (
-                    <h3>There are no pages available!</h3>
-                )
+            // If page does not exist
+            if (!index) {
+                return <NotFound />;
             }
-        }
+            
+            // If page exists
+            const pageContent = pages[index].content.rendered;
+            let imgHtmlTag = '';
+            
+            // display page featured image
+            if (pages[index]._embedded['wp:featuredmedia'] && pages[index]._embedded['wp:featuredmedia'][0].media_details.sizes.medium) {
+                imgHtmlTag = <img src={pages[index]._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url} alt="Blog" />
+            }
+            
+            return (
+                <article key={index}>
+                    <h2 className="page-title">- {pages[index].title.rendered} -</h2>
+                    <header>
+                        {imgHtmlTag}
+                    </header>
+                    <section id="article-excerpt" className="page-content">
+                        { Parser(pageContent) }
+                    </section>
+                    <footer>
+                    </footer>
+                </article>
+            )
+        };
+
         return (
             <div className="content">
                 { renderPage() }
             </div>
         ) 
-    } else {
-        return (
-            <div className="content">
-                <Loader />
-            </div>
-        );
     }
-
 }
 
 export default Page;

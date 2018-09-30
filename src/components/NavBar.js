@@ -20,8 +20,8 @@ class NavBar extends React.Component {
 	render() {
 		return (
 			<div>
-				<Navbar color="faded" light toggleable>
-		          <NavbarToggler right onClick={this.navBarToggle} />
+				<Navbar color="faded" light expand>
+		          <NavbarToggler onClick={this.navBarToggle} />
 		          <NavbarBrand href="/">Randy</NavbarBrand>
 		          <Collapse isOpen={this.state.navBarOpen} navbar>
 		            <Nav className="ml-auto" navbar>

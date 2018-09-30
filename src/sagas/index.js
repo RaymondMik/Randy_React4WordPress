@@ -12,26 +12,6 @@ function* getPostsData() {
     }
 }
 
-function* getCategoriesData() {
-    try {
-        yield put(actions.receiveCategories());
-        const categories  = yield call(getData, 'categories');
-        yield put(actions.receiveCategoriesSuccess(categories));
-    } catch(err) {
-        yield put(actions.receiveCategoriesFailure(err));
-    }
-}
-
-function* getTagsData() {
-    try {
-        yield put(actions.receiveTags());
-        const tags = yield call(getData, 'tags');
-        yield put(actions.receiveTagsSuccess(tags));
-    } catch(err) {
-        yield put(actions.receiveTagsFailure(err));
-    }
-}
-
 function* getPages() {
     try {
         yield put(actions.receivePages())
@@ -66,13 +46,22 @@ function* watchSendComment() {
     yield takeEvery(actions.POST_COMMENT, sendComment);
 }
 
-// Sagas that will be called when the store is initialised
+function* getApod() {
+    try {
+        yield put(actions.receiveAPOD());
+        const url = 'https://api.nasa.gov/planetary/apod?api_key=VJiG1ipRGYSR2cYznlM0uIYtcLCF1SJT9TsYIYKx';
+        const apod = yield call(getData, false, url);
+        yield put(actions.receiveAPODSuccess(apod));
+    } catch(err) {
+        yield put(actions.receiveAPODFailure(err));
+    }
+}
+
 function* rootSaga() {
     yield getPostsData();
     yield getPages();
-    yield getCategoriesData();
-    yield getTagsData();
     yield getComments();
+    yield getApod();
     yield watchSendComment();
 }
 
